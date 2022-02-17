@@ -1,0 +1,9 @@
+[package]
+name = "fu"
+version = "0.1.0"
+authors = ["Angel M De Miguel <hi@angel.kiwi>"]
+edition = "2018"
+
+# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
+
+[dependencies]
