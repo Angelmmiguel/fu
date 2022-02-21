@@ -56,7 +56,6 @@ fn print_size(path: &std::path::PathBuf, calc: CalcResult) {
 
 fn main() -> std::io::Result<()> {
     let args = Cli::parse();
-    let metadata = fs::metadata(&args.path)?;
 
     let calc = entry_size(&args.path)?;
     print_size(&args.path, calc);
