@@ -1,6 +1,14 @@
+// External
 use std::fs;
 use clap::Parser;
 use filesize::PathExt;
+
+// Modules
+mod logger;
+mod size;
+
+use crate::size::FileSize;
+use crate::logger::print_size;
 
 /// Search for a pattern in a file and display the lines that contain it.
 #[derive(Parser)]
@@ -10,15 +18,7 @@ struct Cli {
     path: std::path::PathBuf,
 }
 
-// Result for a size calculation
-struct CalcResult {
-    // Real bytes
-    bytes: u64,
-    // Size on disk
-    disk: u64
-}
-
-fn entry_size(path: &std::path::PathBuf) -> std::io::Result<CalcResult> {
+fn entry_size(path: &std::path::PathBuf) -> std::io::Result<FileSize> {
     let metadata_entry = fs::metadata(path)?;
     let mut acc = 0;
     let mut disk_acc = 0;
@@ -42,16 +42,12 @@ fn entry_size(path: &std::path::PathBuf) -> std::io::Result<CalcResult> {
         acc = acc + metadata_entry.len();
     }
 
-    let res = CalcResult {
+    let res = FileSize {
         bytes: acc,
         disk: disk_acc
     };
 
     Ok(res)
-}
-
-fn print_size(path: &std::path::PathBuf, calc: CalcResult) {
-    println!("{:?}\tDisk: {:?}\tBytes: {:?}", path, calc.disk, calc.bytes);
 }
 
 fn main() -> std::io::Result<()> {
