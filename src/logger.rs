@@ -8,9 +8,10 @@ pub fn print_headers() {
   println!("DISK\tBYTES\tPATH");
 }
 
-pub fn print_size(path: &std::path::PathBuf, calc: FileSize) {
-  let path_string = String::from(path.to_string_lossy());
-  println!("{}\t{}\t{}", human_size(calc.disk), human_size(calc.bytes), path_string);
+pub fn print_size(results: &Vec<FileSize>) {
+  for result in results {
+    println!("{}\t{}\t{}", human_size(result.disk), human_size(result.bytes), result.path);
+  }
 }
 
 fn human_size(size: u64) -> String {

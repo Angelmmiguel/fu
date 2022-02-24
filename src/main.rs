@@ -1,5 +1,6 @@
 // External
 use clap::Parser;
+use glob::glob;
 
 // Modules
 mod logger;
@@ -28,14 +29,39 @@ struct Cli {
 
 fn main() -> std::io::Result<()> {
     let args = Cli::parse();
+    let mut results: Vec<FileSize> = vec![];
 
-    let calc = entry_size(&args.path)?;
+    // Decide which logic to follow
+    let args_str = args.path.to_string_lossy();
+
+    if args_str.contains("*") {
+        // Glob
+        for entry in glob(&args_str).expect("The glob pattern is invalid") {
+            match entry {
+                Ok(path) => results.push(entry_size(&path)?),
+                Err(e) => println!("{:?}", e),
+            }
+        }
+    } else if args_str.ends_with("/") {
+        // Use glob too
+        let args_with_glob = format!("{}*", args_str);
+        // List directory
+        for entry in glob(&args_with_glob).expect("The glob pattern is invalid") {
+            match entry {
+                Ok(path) => results.push(entry_size(&path)?),
+                Err(e) => println!("{:?}", e),
+            }
+        }
+    } else {
+        // Single file
+        results.push(entry_size(&args.path)?);
+    }
 
     if !args.no_header {
         print_headers()
     }
 
-    print_size(&args.path, calc);
+    print_size(&results);
 
     Ok(())
 }

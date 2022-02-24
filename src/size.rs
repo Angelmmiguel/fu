@@ -6,7 +6,9 @@ pub struct FileSize {
   // Real bytes
   pub bytes: u64,
   // Size on disk
-  pub disk: u64
+  pub disk: u64,
+  // Path of the file
+  pub path: String
 }
 
 pub fn entry_size(path: &std::path::PathBuf) -> std::io::Result<FileSize> {
@@ -35,7 +37,8 @@ pub fn entry_size(path: &std::path::PathBuf) -> std::io::Result<FileSize> {
 
   let res = FileSize {
       bytes: acc,
-      disk: disk_acc
+      disk: disk_acc,
+      path: path.display().to_string()
   };
 
   Ok(res)
