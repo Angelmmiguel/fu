@@ -22,6 +22,10 @@ struct Cli {
     #[clap(parse(from_os_str))]
     path: std::path::PathBuf,
 
+    /// Sort the output based on the size
+    #[clap(long, short)]
+    sort: bool,
+
     /// Hide the headers from the output
     #[clap(long)]
     no_header: bool,
@@ -63,6 +67,10 @@ fn main() -> std::io::Result<()> {
 
     if !args.no_header {
         print_headers()
+    }
+
+    if args.sort {
+        results.sort_by(|a, b| b.bytes.cmp(&a.bytes));
     }
 
     print_size(&results, args.no_colors);
