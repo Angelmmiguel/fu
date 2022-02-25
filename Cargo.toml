@@ -10,3 +10,4 @@ edition = "2018"
 clap = { version = "3.1.0", features = ["derive"] }
 filesize = { version = "0.2.0" }
 glob = { version = "0.3.0" }
+colored = { version = "2" }
