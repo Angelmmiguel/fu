@@ -25,6 +25,10 @@ struct Cli {
     /// Hide the headers from the output
     #[clap(long)]
     no_header: bool,
+
+    /// Disable the colors in the output
+    #[clap(long)]
+    no_colors: bool,
 }
 
 fn main() -> std::io::Result<()> {
@@ -61,7 +65,7 @@ fn main() -> std::io::Result<()> {
         print_headers()
     }
 
-    print_size(&results);
+    print_size(&results, args.no_colors);
 
     Ok(())
 }
