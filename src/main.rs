@@ -33,6 +33,10 @@ struct Cli {
     /// Disable the colors in the output
     #[clap(long)]
     no_colors: bool,
+
+    /// Sort and limit the output to the N heaviest entries
+    #[clap(long, short, parse(try_from_str))]
+    top: Option<usize>
 }
 
 fn main() -> std::io::Result<()> {
@@ -69,8 +73,15 @@ fn main() -> std::io::Result<()> {
         print_headers()
     }
 
-    if args.sort {
+    if args.sort || args.top.is_some() {
         results.sort_by(|a, b| b.bytes.cmp(&a.bytes));
+    }
+
+    match args.top {
+        Some(num) => {
+            results.truncate(num);
+        },
+        None => {}
     }
 
     print_size(&results, args.no_colors);
