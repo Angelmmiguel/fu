@@ -1,2 +1,117 @@
 # fu
-A du replacement with more features
+
+`fu` is a `du` alike CLI. It comes with a set a new features and a better output. For example, it allows you to sort and limit the number of entries and provides a colorized output to highlight heaviest entries.
+
+## Installation
+
+_TODO_
+
+## Usage
+
+```
+$ fu --help
+fu
+Search for a pattern in a file and display the lines that contain it
+
+USAGE:
+    fu [OPTIONS] <PATH>
+
+ARGS:
+    <PATH>    The path to the file to read
+
+OPTIONS:
+    -h, --help         Print help information
+        --no-colors    Disable the colors in the output
+        --no-header    Hide the headers from the output
+    -s, --sort         Sort the output based on the size
+    -t, --top <TOP>    Sort and limit the output to the N heaviest entries
+```
+
+### Sort the entries by size
+
+```
+$ fu --sort ./
+DISK    BYTES   PATH
+258M    238M    target
+492K    71K     .git
+12K     11K     LICENSE
+8K      6K      Cargo.lock
+12K     4K      src
+4K      1K      README.md
+4K      361B    Cargo.toml
+4K      263B    .github
+4K      131B    .gitignore
+```
+
+### Just the sum of the folder
+
+```
+$ fu .
+DISK    BYTES   PATH
+259M    239M    .
+```
+
+### Sort and show top N entries
+
+```
+$ fu --top 2 ./
+DISK    BYTES   PATH
+258M    238M    target
+492K    71K     .git
+```
+
+### Use glob
+
+```
+$ fu ./*.md
+DISK    BYTES   PATH
+4K      1K      ./README.md
+```
+
+### Hide headers
+
+```
+$ fu --top 2 --no-headers ./
+258M    238M    target
+492K    71K     .git
+```
+
+## Development
+
+To develop `fu` you need to install the Rust language on your environment:
+
+- [Get started with Rust](https://www.rust-lang.org/learn/get-started)
+
+Then, you need to clone the project and start exploring the CLI:
+
+```
+# Clone the repo
+git clone https://github.com/Angelmmiguel/fu.git && cd fu
+
+# Run the CLI (development) against the current folder
+cargo run -- ./
+
+# Run tests
+cargo tests
+
+# Build the CLI
+cargo build
+
+# Build using the release profile
+cargo build --release
+```
+
+## Why?
+
+I developed `fu` for two main reasons:
+
+- I love to use small projects to learn new languages, frameworks, patterns, etc. So, I use `fu` as an excuse to start learning Rust language.
+- Try to offer an alternative and add missing features for well known CLIs I use everyday. I use `du`, although most of the times I combine it with other CLIs that helps me to filter and sort.
+
+That's all! Feel free to request new features and let's discuss about how we can improve `fu` :)
+
+## License
+
+`fu` is released under the Apache License v2.0 (See [LICENSE](https://github.com/Angelmmiguel/fu/blob/main/LICENSE)).
+
+Copyright 2022 [Angel M Miguel](https://angel.kiwi).
