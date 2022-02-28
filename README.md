@@ -112,4 +112,6 @@ That's all! Feel free to request new features and let's discuss about how we can
 
 ## License
 
-`fu` is released under the Apache License v2.0 (See [LICENSE](https://github.com/Angelmmiguel/fu/blob/main/LICENSE)). Copyright 2022 [Angel M Miguel](https://angel.kiwi).
+`fu` is released under the Apache License v2.0 (See [LICENSE](https://github.com/Angelmmiguel/fu/blob/main/LICENSE)).
+
+Copyright 2022 [Angel M Miguel](https://angel.kiwi).
