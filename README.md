@@ -11,7 +11,7 @@ Run the following commands in a terminal:
 ```
 curl -L \
   https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-apple-darwin.tar.gz \
-  -o /tmp/fu-x86_64-apple-darwin.tar.gz && \
+    -o /tmp/fu-x86_64-apple-darwin.tar.gz && \
   tar -xvfz /tmp/fu-x86_64-apple-darwin.tar.gz && \
   mv /tmp/fu-x86_64-apple-darwin/fu /usr/local/bin && \
   rm -r /tmp/fu-x86_64-apple-darwin.tar.gz /tmp/fu-x86_64-apple-darwin
@@ -26,7 +26,7 @@ Run the following commands in a terminal:
 ```
 curl -L \
   https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-unknown-linux-gnu.tar.gz \
-  -o /tmp/fu-x86_64-unknown-linux-gnu.tar.gz && \
+    -o /tmp/fu-x86_64-unknown-linux-gnu.tar.gz && \
   tar -xvfz /tmp/fu-x86_64-unknown-linux-gnu.tar.gz && \
   mv /tmp/fu-x86_64-unknown-linux-gnu/fu /usr/local/bin && \
   rm -r /tmp/fu-x86_64-unknown-linux-gnu.tar.gz /tmp/fu-x86_64-unknown-linux-gnu
