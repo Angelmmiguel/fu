@@ -1,3 +1,12 @@
+<p align="center">
+  <img width="400" alt="Fu example screenshot showing the size of files in the project" src="https://user-images.githubusercontent.com/4056725/156439322-8e8f56b7-a4ae-4489-8429-323489f6a8a2.png">
+  <br>
+  <a href="https://github.com/Angelmmiguel/fu/actions?query=workflow%3ARust">
+    <img src="https://github.com/Angelmmiguel/fu/workflows/Rust/badge.svg" alt="Build Status">
+  </a>
+  <img src="https://img.shields.io/badge/License-Apache--2.0-blue" alt="license">
+</p>
+
 # fu
 
 `fu` is a `du` alike CLI. It comes with a set a new features and a better output. For example, it allows you to sort and limit the number of entries and provides a colorized output to highlight heaviest entries.
