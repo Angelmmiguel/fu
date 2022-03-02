@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="625" alt="Fu example screenshot showing the size of files in the project" src="https://user-images.githubusercontent.com/4056725/156424142-d22060ea-f4d1-436c-9d55-bf8ebf91f7db.png">
+  <img width="400" alt="Fu example screenshot showing the size of files in the project" src="https://user-images.githubusercontent.com/4056725/156439322-8e8f56b7-a4ae-4489-8429-323489f6a8a2.png">
   <br>
   <a href="https://github.com/Angelmmiguel/fu/actions?query=workflow%3ARust">
     <img src="https://github.com/Angelmmiguel/fu/workflows/Rust/badge.svg" alt="Build Status">
