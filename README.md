@@ -4,7 +4,13 @@
 
 ## Installation
 
-### MacOS
+### Package managers
+
+This work is still in progress. `fu` will be available in the different package managers :)
+
+### Manual
+
+#### MacOS
 
 Run the following commands in a terminal:
 
@@ -12,14 +18,16 @@ Run the following commands in a terminal:
 curl -L \
   https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-apple-darwin.tar.gz \
     -o /tmp/fu-x86_64-apple-darwin.tar.gz && \
-  tar -xvfz /tmp/fu-x86_64-apple-darwin.tar.gz && \
+  tar -xvf /tmp/fu-x86_64-apple-darwin.tar.gz -C /tmp && \
   mv /tmp/fu-x86_64-apple-darwin/fu /usr/local/bin && \
   rm -r /tmp/fu-x86_64-apple-darwin.tar.gz /tmp/fu-x86_64-apple-darwin
 ```
 
+> NOTE: MacOS may block `fu` CLI due to unknown signature. You can allow it by accessing the _Security and Privacy_ system preference panel and clicking on the _Allow anyway_ button.
+
 This will install the `fu` CLI in the `/usr/local/bin` folder.
 
-### Linux
+#### Linux
 
 Run the following commands in a terminal:
 
@@ -27,24 +35,20 @@ Run the following commands in a terminal:
 curl -L \
   https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-unknown-linux-gnu.tar.gz \
     -o /tmp/fu-x86_64-unknown-linux-gnu.tar.gz && \
-  tar -xvfz /tmp/fu-x86_64-unknown-linux-gnu.tar.gz && \
+  tar -xvf /tmp/fu-x86_64-unknown-linux-gnu.tar.gz -C /tmp && \
   mv /tmp/fu-x86_64-unknown-linux-gnu/fu /usr/local/bin && \
   rm -r /tmp/fu-x86_64-unknown-linux-gnu.tar.gz /tmp/fu-x86_64-unknown-linux-gnu
 ```
 
 This will install the `fu` CLI in the `/usr/local/bin` folder.
 
-### Windows
+#### Windows
 
 For Windows, please follow the next steps:
 
 - Download the latest release from [the releases page](https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-pc-windows-gnu.tar.gz)
 - Uncompress it
 - Place the `fu.exe` binary in a folder that it's referenced in your `PATH`
-
-### Package managers
-
-This work is still in progress, but `fu` will be available in the different package managers :)
 
 ## Usage
 
