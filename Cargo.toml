@@ -1,6 +1,6 @@
 [package]
 name = "fu"
-version = "0.1.0"
+version = "1.0.0"
 authors = ["Angel M De Miguel <hi@angel.kiwi>"]
 edition = "2018"
 
