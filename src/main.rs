@@ -15,8 +15,9 @@ use crate::logger::{
     print_headers
 };
 
-/// Search for a pattern in a file and display the lines that contain it.
+/// Retrieve the size and disk usage of files and directories
 #[derive(Parser)]
+#[clap(version = env!("FU_VERSION"))]
 struct Cli {
     /// The path to the file to read
     #[clap(parse(from_os_str))]
