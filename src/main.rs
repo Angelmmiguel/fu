@@ -1,6 +1,10 @@
 // External
 use clap::Parser;
 use glob::glob;
+use colored::*;
+
+// System
+use std::process::exit;
 
 // Modules
 mod logger;
@@ -51,7 +55,15 @@ fn main() -> std::io::Result<()> {
         // Glob
         for entry in glob(&args_str).expect("The glob pattern is invalid") {
             match entry {
-                Ok(path) => results.push(entry_size(&path)?),
+                Ok(path) => {
+                    match entry_size(&path) {
+                        Ok(size) => results.push(size),
+                        Err(e) => {
+                            eprintln!("{}", e.to_string().red());
+                            exit(1);
+                        }
+                    }
+                },
                 Err(e) => println!("{:?}", e),
             }
         }
@@ -61,13 +73,27 @@ fn main() -> std::io::Result<()> {
         // List directory
         for entry in glob(&args_with_glob).expect("The glob pattern is invalid") {
             match entry {
-                Ok(path) => results.push(entry_size(&path)?),
+                Ok(path) => {
+                    match entry_size(&path) {
+                        Ok(size) => results.push(size),
+                        Err(e) => {
+                            eprintln!("{}", e.to_string().red());
+                            exit(1);
+                        }
+                    }
+                },
                 Err(e) => println!("{:?}", e),
             }
         }
     } else {
         // Single file
-        results.push(entry_size(&args.path)?);
+        match entry_size(&args.path) {
+            Ok(size) => results.push(size),
+            Err(e) => {
+                eprintln!("{}", e.to_string().red());
+                exit(1);
+            }
+        }
     }
 
     if !args.no_header {
