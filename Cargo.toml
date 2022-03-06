@@ -1,7 +1,15 @@
 [package]
 name = "fu"
-version = "1.0.0-rc.1"
+version = "1.0.0"
 authors = ["Angel M De Miguel <hi@angel.kiwi>"]
+description = "fu is a du alike CLI. It comes with a set of new features and a better output"
+readme = "README.md"
+license = "Apache-2.0"
+keywords = ["cli", "tool", "unix", "file", "filesize"]
+categories = ["command-line-utilities", "filesystem"]
+repository = "https://github.com/Angelmmiguel/fu/"
+exclude = [".*"]
+
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html

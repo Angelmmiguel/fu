@@ -9,7 +9,7 @@
 
 # fu
 
-`fu` is a `du` alike CLI. It comes with a set a new features and a better output. For example, it allows you to sort and limit the number of entries and provides a colorized output to highlight heaviest entries.
+`fu` is a `du` alike CLI. It comes with a set of new features and a better output. For example, it allows you to sort and limit the number of entries and provides a colorized output to highlight heaviest entries.
 
 ## Installation
 
