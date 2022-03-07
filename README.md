@@ -43,7 +43,7 @@ curl -L \
   rm -r /tmp/fu-x86_64-apple-darwin.tar.gz /tmp/fu-x86_64-apple-darwin
 ```
 
-The `xattr` call is required because downloaded binaries are marked as "quarantine" by MacOS. In addition to that, the system may block `fu` CLI due to unknown signature. You can allow it by accessing the _Security and Privacy_ system preference panel and clicking on the _Allow anyway_ button.`
+The `xattr` call is required because downloaded binaries are marked as "quarantine" by MacOS. In addition to that, the system may block `fu` CLI due to unknown signature. You can allow it by accessing the _Security and Privacy_ system preference panel and clicking on the _Allow anyway_ button.
 
 This will install the `fu` CLI in the `/usr/local/bin` folder.
 
