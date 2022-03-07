@@ -25,7 +25,13 @@ brew install Angelmmiguel/tap/fu
 <details>
   <summary>Install <code>fu</code> without brew</summary>
 
-To install `fu` without brew, run the following commands:
+Run the following commands to:
+
+1. Download the file from the GitHub releases page
+1. Uncompress it
+1. Remove the quarantine attribute from MacOS
+1. Move the CLI binary to /usr/local/bin
+1. Remove any remaining file
 
 ```
 curl -L \
