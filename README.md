@@ -23,7 +23,7 @@ brew install Angelmmiguel/tap/fu
 ```
 
 <details>
-  <summary>Install `fu` without brew</summary>
+  <summary>Install <code>fu</code> without brew</summary>
 
 To install `fu` without brew, run the following commands:
 
