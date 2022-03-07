@@ -13,30 +13,43 @@
 
 ## Installation
 
-### Package managers
+### MacOS
 
-This work is still in progress. `fu` will be available in the different package managers :)
+To install it using view, run the following commands:
 
-### Manual
+```
+brew tap Angelmmiguel/tap
+brew install Angelmmiguel/tap/fu
+```
 
-#### MacOS
+<details>
+  <summary>Install <code>fu</code> without brew</summary>
 
-Run the following commands in a terminal:
+Run the following commands to:
+
+1. Download the file from the GitHub releases page
+1. Uncompress it
+1. Remove the quarantine attribute from MacOS
+1. Move the CLI binary to /usr/local/bin
+1. Remove any remaining file
 
 ```
 curl -L \
   https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-apple-darwin.tar.gz \
     -o /tmp/fu-x86_64-apple-darwin.tar.gz && \
   tar -xvf /tmp/fu-x86_64-apple-darwin.tar.gz -C /tmp && \
+  xattr -d com.apple.quarantine /tmp/fu-x86_64-apple-darwin/fu && \
   mv /tmp/fu-x86_64-apple-darwin/fu /usr/local/bin && \
   rm -r /tmp/fu-x86_64-apple-darwin.tar.gz /tmp/fu-x86_64-apple-darwin
 ```
 
-> NOTE: MacOS may block `fu` CLI due to unknown signature. You can allow it by accessing the _Security and Privacy_ system preference panel and clicking on the _Allow anyway_ button.
+The `xattr` call is required because downloaded binaries are marked as "quarantine" by MacOS. In addition to that, the system may block `fu` CLI due to unknown signature. You can allow it by accessing the _Security and Privacy_ system preference panel and clicking on the _Allow anyway_ button.
 
 This will install the `fu` CLI in the `/usr/local/bin` folder.
 
-#### Linux
+</details>
+
+### Linux
 
 Run the following commands in a terminal:
 
@@ -51,7 +64,7 @@ curl -L \
 
 This will install the `fu` CLI in the `/usr/local/bin` folder.
 
-#### Windows
+### Windows
 
 For Windows, please follow the next steps:
 
