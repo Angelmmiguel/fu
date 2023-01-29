@@ -103,7 +103,7 @@ jobs:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}
     - name: Generate asset digest (Linux)
-      if: ${{ matrix.build != 'macos' }}
+      if: ${{ matrix.build == 'linux' }}
       run: sha256sum "${{ env.TARBALL }}" | sudo tee "${{ env.TARBALL }}.sha256sum" > /dev/null
     - name: Generate asset digest (MacOS)
       if: ${{ matrix.build == 'macos' }}
