@@ -108,6 +108,9 @@ jobs:
     - name: Generate asset digest (MacOS)
       if: ${{ matrix.build == 'macos' }}
       run: shasum -a 256 "${{ env.TARBALL }}" | sudo tee "${{ env.TARBALL }}.sha256sum" > /dev/null
+    - name: Generate asset digest (Windows)
+      if: ${{ matrix.build == 'windows' }}
+      run:  Get-FileHash "${{ env.TARBALL }}" | Format-List -Property Algorithm,Hash > "${{ env.TARBALL }}.sha256sum"
     - name: Append release assets digests
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
