@@ -93,18 +93,18 @@ jobs:
         tar czvf "fu-${{ matrix.name }}-${{ matrix.arch }}.tar.gz" -C ./out .
         echo "TARBALL=fu-${{ matrix.name }}-${{ matrix.arch }}.tar.gz" >> $GITHUB_ENV
     - name: Create the new release
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release create --generate-notes ${{ github.ref_name }} || true
-      - name: Append  assets
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}
-      - name: Generate release assets digests
-        run: sha256sum "${{ env.TARBALL }}" | sudo tee "${{ env.TARBALL }}.sha256sum" > /dev/null
-      - name: Append release assets digests
-        env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: |
-          gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}.sha256sum
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release create --generate-notes ${{ github.ref_name }} || true
+    - name: Append  assets
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}
+    - name: Generate release assets digests
+      run: sha256sum "${{ env.TARBALL }}" | sudo tee "${{ env.TARBALL }}.sha256sum" > /dev/null
+    - name: Append release assets digests
+      env:
+        GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      run: |
+        gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}.sha256sum
