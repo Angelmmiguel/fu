@@ -4,10 +4,6 @@ on:
   push:
     tags:
     - "v[0-9]+.[0-9]+.[0-9]+"
-  # TODO: Only for testing. I will remove this
-  pull_request:
-    branches:
-    - "main"
 
 jobs:
   test:
