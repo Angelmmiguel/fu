@@ -1,0 +1,110 @@
+name: Build artifacts
+
+on:
+  push:
+    tags:
+    - "v[0-9]+.[0-9]+.[0-9]+"
+  # TODO: Only for testing. I will remove this
+  pull_request:
+    branches:
+    - "main"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Test
+      run: cargo test
+  build:
+    strategy:
+      matrix:
+        build: [linux, windows, macos]
+        arch: [x86_64, aarch64]
+        include:
+          - build: linux
+            arch: x86_64
+            os: ubuntu-latest
+            platform: unknown-linux-musl
+            cross: false
+            name: linux-musl
+          - build: linux
+            arch: aarch64
+            os: ubuntu-latest
+            platform: unknown-linux-musl
+            cross: true
+            name: linux-musl
+          - build: windows
+            arch: x86_64
+            os: windows-latest
+            platform: pc-windows-msvc
+            cross: false
+            name: pc-windows
+          - build: windows
+            arch: aarch64
+            os: windows-latest
+            platform: pc-windows-msvc
+            cross: false
+            name: pc-windows
+          - build: macos
+            arch: x86_64
+            os: macos-latest
+            platform: apple-darwin
+            cross: false
+            name: macos-darwin
+          - build: macos
+            arch: aarch64
+            os: macos-latest
+            platform: apple-darwin
+            cross: false
+            name: macos-darwin
+    runs-on: ${{ matrix.os }}
+    env:
+      # This variable can be overriden with `cross` for builds that
+      # requires it. By default, we will compile everything using cargo.
+      CARGO: cargo
+    steps:
+    - uses: actions/checkout@v3
+    - name: Install cross
+      if: matrix.cross == true
+      run: |
+        cargo install cross
+        echo "CARGO=cross" >> $GITHUB_ENV
+    - name: Install target
+      if: matrix.cross == false
+      run: rustup target add ${{ matrix.arch }}-${{ matrix.platform }}
+    - name: Install deps
+      if: ${{ matrix.build == 'linux' }}
+      run: |
+        sudo apt-get update
+        sudo apt-get install musl-tools
+    - name: Build
+      run: ${{env.CARGO}} build --verbose --release --target=${{ matrix.arch }}-${{ matrix.platform }}
+    - name: Tarball
+      shell: bash
+      run: |
+        mkdir out
+        cp {README.md,LICENSE} out
+        if [ "${{ matrix.os }}" = "windows-latest" ]; then
+          cp "target/${{ matrix.arch }}-${{ matrix.platform }}/release/fu.exe" ./out
+        else
+          cp "target/${{ matrix.arch }}-${{ matrix.platform }}/release/fu" ./out
+        fi
+        tar czvf "fu-${{ matrix.name }}-${{ matrix.arch }}.tar.gz" -C ./out .
+        echo "TARBALL=fu-${{ matrix.name }}-${{ matrix.arch }}.tar.gz" >> $GITHUB_ENV
+    - name: Create the new release
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create --generate-notes ${{ github.ref_name }} || true
+      - name: Append  assets
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}
+      - name: Generate release assets digests
+        run: sha256sum "${{ env.TARBALL }}" | sudo tee "${{ env.TARBALL }}.sha256sum" > /dev/null
+      - name: Append release assets digests
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}.sha256sum
