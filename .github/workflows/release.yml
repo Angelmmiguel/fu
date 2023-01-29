@@ -18,6 +18,7 @@ jobs:
       run: cargo test
   build:
     strategy:
+      fail-fast: false
       matrix:
         build: [linux, windows, macos]
         arch: [x86_64, aarch64]
@@ -101,8 +102,12 @@ jobs:
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       run: gh release upload ${{ github.ref_name }} ${{ env.TARBALL }}
-    - name: Generate release assets digests
+    - name: Generate asset digest (Linux)
+      if: ${{ matrix.build != 'macos' }}
       run: sha256sum "${{ env.TARBALL }}" | sudo tee "${{ env.TARBALL }}.sha256sum" > /dev/null
+    - name: Generate asset digest (MacOS)
+      if: ${{ matrix.build == 'macos' }}
+      run: shasum -a 256 "${{ env.TARBALL }}" | sudo tee "${{ env.TARBALL }}.sha256sum" > /dev/null
     - name: Append release assets digests
       env:
         GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
