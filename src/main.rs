@@ -21,26 +21,26 @@ use crate::logger::{
 
 /// Retrieve the size and disk usage of files and directories
 #[derive(Parser)]
-#[clap(version = env!("FU_VERSION"))]
+#[command(version = env!("FU_VERSION"))]
 struct Cli {
   /// The path to the file to read
-  #[clap(parse(from_os_str))]
+  #[arg()]
   path: std::path::PathBuf,
 
   /// Sort the output based on the size
-  #[clap(long, short)]
+  #[arg(long, short)]
   sort: bool,
 
   /// Hide the headers from the output
-  #[clap(long)]
+  #[arg(long)]
   no_header: bool,
 
   /// Disable the colors in the output
-  #[clap(long)]
+  #[arg(long)]
   no_colors: bool,
 
   /// Sort and limit the output to the N heaviest entries
-  #[clap(long, short, parse(try_from_str))]
+  #[arg(long, short)]
   top: Option<usize>
 }
 

@@ -1,13 +1,12 @@
 mod integration {
   use std::process::Command;
 
-  static WITHOUT_ARGS_OUTPUT: &'static str = "error: The following required arguments were not provided:
-    <PATH>
+  static WITHOUT_ARGS_OUTPUT: &'static str = "error: the following required arguments were not provided:
+  <PATH>
 
-USAGE:
-    fu [OPTIONS] <PATH>
+Usage: fu <PATH>
 
-For more information try --help
+For more information, try '--help'.
 ";
 
   static WITH_FOLDER: &'static str = "DISK\tBYTES\tPATH
