@@ -1,7 +1,7 @@
 mod integration {
   use std::process::Command;
 
-  static WITHOUT_ARGS_OUTPUT: &'static str = "error: The following required arguments were not provided:
+  static WITHOUT_ARGS_OUTPUT: &'static str = "error: the following required arguments were not provided:
   <PATH>
 
 Usage: fu <PATH>
