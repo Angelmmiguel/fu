@@ -66,11 +66,23 @@ This will install the `fu` CLI in the `/usr/local/bin` folder.
 
 ### Windows
 
-For Windows, please follow the next steps:
+For Windows, please run the following commands to install it with [Scoop](https://scoop.sh/):
 
-- Download the latest release from [the releases page](https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-pc-windows-gnu.tar.gz)
-- Uncompress it
-- Place the `fu.exe` binary in a folder that it's referenced in your `PATH`
+```
+scoop bucket add extras
+scoop install fu
+```
+
+<details>
+  <summary>Install <code>fu</code> without Scoop</summary>
+  
+Follow these steps:
+
+1. Download the latest release from [the releases page](https://github.com/Angelmmiguel/fu/releases/latest/download/fu-x86_64-pc-windows-gnu.tar.gz)
+1. Uncompress it
+1. Place the `fu.exe` binary in a folder that it's referenced in your `PATH`
+
+</details>
 
 ## Usage
 
@@ -175,6 +187,10 @@ I developed `fu` for two main reasons:
 - Try to offer an alternative and add missing features for well known CLIs I use everyday. I use `du`, although most of the times I combine it with other CLIs that helps me to filter and sort.
 
 That's all! Feel free to request new features and let's discuss about how we can improve `fu` :)
+
+## Acknowledgements
+
+* Thanks to [@Slach](https://github.com/Slach) for including fu in the Scoop Extras repository (See #40)
 
 ## License
 
